@@ -50,7 +50,7 @@ const formatador = (data) => {
     const formatar = formatador(atividade.data);
   
     return `
-      <div>
+      <div class="card-bg">
           ${input}
           <span>${atividade.nome}</span>
           <time>${formatar.dia.semana.longo}, 
