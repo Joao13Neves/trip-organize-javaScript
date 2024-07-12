@@ -4,23 +4,24 @@
   box-sizing: border-box;
 }
 
-body,
+html,
 input,
 select,
 button,
 option {
   font-family: "Inter", sans-serif;
   background: #09090B;
+  color: #fafafa;
   letter-spacing: -0.02em;
   line-height: 120%;
-  color: #fafafa;
 }
 
-/* APP */
-#app {
+.container {
   padding: 40px 20px;
-  max-width: 320px;
-  margin: 0 auto;
+  display: flex;
+  gap: 32px;
+  max-width: 1024px;
+  margin: auto;
 }
 
 
@@ -28,10 +29,10 @@ option {
 #place {
   display: flex;
   align-items: center;
-  gap: 12px;
-  margin-bottom: 32px;
-  font-size: 1rem;
+  gap: 8px;
   padding: 22px 16px;
+  font-size: 0.9rem;
+  margin-bottom: 32px;
 }
 
 input,
@@ -65,14 +66,15 @@ button {
 }
 
 button {
-  cursor: pointer;
   margin-top: 12px;
+  border: none;
   padding: 12px 20px;
-  border-radius: 8px;
   background-color: #aff445;
+  border-radius: 8px;
   font-weight: 500;
-  color: #132f00;
   font-size: 1rem;
+  color: #132f00;
+  cursor: pointer;
 }
 
 .card-bg {
@@ -86,22 +88,106 @@ button {
 
 /* MAIN */
 main {
-  margin-top: 32px;
+  margin-top: 0;
+  flex: 1;
 }
 
 h1 {
-  font-size: 1.5rem;
-  font-weight: 600;
-  text-align: center;
-  margin-bottom: 24px;
+  text-align: left;
+  margin-top: 38px;
+  margin-bottom: 38px;
 }
 
 section {
   display: grid;
-  gap: 8px;
+  gap: 10px;
+}
+
+section input[type="checkbox"] {
+  position: absolute;
+  inset: 0;
 }
 
 section .card-bg {
-  padding: 10px 16px;
+  position: relative;
+  padding: 12px 16px;
+  display: flex;
   align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
 }
+
+section .card-bg:has(:checked) .active,
+section .card-bg .inactive {
+  display: block;
+}
+
+section .card-bg:has(:checked) .inactive,
+section .card-bg .active {
+  display: none;
+}
+
+section .card-bg > div {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+time {
+  font-size: 0.8rem;
+  color: #A1A1A1;
+  text-align: right;
+}
+
+time.short {
+  display: none;
+}
+
+@media (max-width: 800px) {
+  time.full {
+    display: none;
+  }
+
+  time.short {
+    display: block;
+  }
+}
+
+@media (max-width: 600px) {
+  .container {
+    display: grid;
+    gap: 32px;
+  }
+
+  main {
+    margin-top: 32px;
+  }
+
+  h1 {
+    text-align: center;
+    font-weight: 600;
+    font-size: 1.5rem;
+    margin-bottom: 24px;
+  }
+
+  time.full {
+    display: none;
+  }
+
+  time.short {
+    display: block;
+  }
+}
+
+section .card-bg {
+  animation: appear 300ms;
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+  }
+}
+
+
+
